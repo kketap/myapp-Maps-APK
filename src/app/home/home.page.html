@@ -1,0 +1,82 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title id="titulo">
+      TeLlevoApp
+    </ion-title>
+    <p id="subtitulo"></p>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-avatar id="avatar" (click)="avatarPlay()" size="small" shape="round">
+    <img src="https://i.pinimg.com/750x/d3/0f/ef/d30feffc63bc1b8b78798cd26a2e3367.jpg" alt="logo" />
+  </ion-avatar><br>
+
+
+  <mat-progress-bar mode="query" ></mat-progress-bar>
+ <div id="container"><br><br><br><br><br><br><br><br><br><br><br>
+    <strong>Bienvenido!</strong><br><br>
+
+  
+
+
+  <ion-item id="item">
+    <ion-item>
+      <ion-input label="Nombre Usuario" labelPlacement="floating" placeholder="Ingrese su Usuario"></ion-input>
+    </ion-item>
+  </ion-item>
+  <ion-item id="contra">
+    <ion-input label="Contraseña" type="password" labelPlacement="floating" placeholder="Ingrese su Contraseña">
+    </ion-input>
+  </ion-item>
+  
+  <ion-button (click)="enviainfor()" size="small" shape="round" fill="clear" id="boton">Ingresar</ion-button>
+  <h1>{{mensaje}}</h1><br>
+
+  <ion-button (click)="enviarInfo()" size="small" shape="round" fill="clear" id="recu"><u>recuperar
+      contraseña</u></ion-button>
+      <ion-header>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-button id="open-modal" expand="block">Registrate</ion-button>
+        <p>{{ message }}</p>
+        <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+          <ng-template>
+            <ion-header>
+              <ion-toolbar>
+                <ion-buttons slot="start">
+                  <ion-button (click)="cancel()">Cancel</ion-button>
+                </ion-buttons>
+                <ion-title>Welcome</ion-title>
+                <ion-buttons slot="end">
+                  <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-header>
+            <ion-content class="ion-padding">
+              <ion-item>
+                <ion-input
+                  label="Enter your name"
+                  labelPlacement="stacked"
+                  type="text"
+                  placeholder="Your name"
+                  [(ngModel)]="user.usuario"
+                ></ion-input>
+                <ion-input
+                  label="Enter your password"
+                  labelPlacement="stacked"
+                  type="password"
+                  placeholder="Your password"
+                  [(ngModel)]="user.password"
+                ></ion-input>
+              </ion-item>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </ion-content>
+  
+    <ion-label>{{estado}}</ion-label>
+  </div>
+
+</ion-content>
