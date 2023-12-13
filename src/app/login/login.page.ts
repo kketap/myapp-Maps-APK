@@ -4,7 +4,13 @@ import { AuthGuard } from '../auth.guard';
 
 declare var google:any;
 
-
+interface WayPoint {
+  location: {
+    lat: number,
+    lng: number,
+  };
+  stopover: boolean;
+}
 
 @Component({
   selector: 'app-login',
@@ -17,11 +23,26 @@ export class LoginPage implements OnInit {
  
   directionsService = new google.maps.DirectionsService();
   directionsDisplay = new google.maps.DirectionsRenderer();
-  // parque simon bolivar
+  
   origin = { lat: -33.43277718326961, lng: -70.61494312441283 };
-  // Parque la 93
+  
   destination = { lat: -33.521068104744224, lng: -70.57593482818147 };
 
+  wayPoints: WayPoint[] = [
+    {
+      location: { lat: -33.44051682903075, lng: -70.61178820518394 }, // Jardín Botánico
+      stopover: true,
+    },
+    {
+      location: { lat: -33.40048989200681, lng: -70.64899269310256 }, // Parque la 93
+      stopover: true,
+    },
+    
+  ];
+  
+
+  
+  
   loadMap() {
     // create a new map by passing HTMLElement
     const mapEle: HTMLElement = document.getElementById('map')!;
@@ -45,6 +66,8 @@ export class LoginPage implements OnInit {
     this.directionsService.route({
       origin: this.origin,
       destination: this.destination,
+      waypoints: this.wayPoints,
+      optimizeWaypoints: true,
       travelMode: google.maps.TravelMode.DRIVING,
     }, (response:any, status:any)  => {
       if (status === google.maps.DirectionsStatus.OK) {
@@ -60,5 +83,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     this.loadMap();
   }
+
+  
 
 }
